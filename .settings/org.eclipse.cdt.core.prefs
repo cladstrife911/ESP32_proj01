@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.480657781/IDF_PATH/delimiter=;
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.480657781/IDF_PATH/operation=append
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.480657781/IDF_PATH/value=C\:\\msys32\\home\\toine\\esp\\esp-idf
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.480657781/PATH/delimiter=;
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.480657781/PATH/operation=replace
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.480657781/PATH/value=C\:/Program Files/Java/jdk1.8.0_05/jre/bin/server;C\:/Program Files/Java/jdk1.8.0_05/jre/bin;C\:/Program Files/Java/jdk1.8.0_05/jre/lib/amd64;C\:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C\:\\ProgramData\\Oracle\\Java\\javapath;C\:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C\:\\Program Files\\Common Files\\Microsoft Shared\\Windows Live;C\:\\WINDOWS\\system32;C\:\\WINDOWS;C\:\\WINDOWS\\System32\\Wbem;C\:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C\:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C\:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C\:\\Program Files (x86)\\Universal Extractor;C\:\\Program Files (x86)\\Universal Extractor\\bin;C\:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C\:\\Program Files\\Microsoft DNX\\Dnvm\\;C\:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C\:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C\:\\Program Files (x86)\\PuTTY\\;C\:\\Program Files (x86)\\Skype\\Phone\\;C\:\\WINDOWS\\System32\\OpenSSH\\;C\:\\Program Files\\Git\\cmd;C\:\\Program Files\\TortoiseGit\\bin;C\:\\PROGRA~2\\Groovy\\GROOVY~1.0\\bin;C\:\\Program Files\\Common Files\\Microsoft Shared\\Windows Live;C\:\\Program Files\\Microsoft VS Code\\bin;C\:\\Users\\toine\\AppData\\Local\\Microsoft\\WindowsApps;;C\:\\Users\\toine\\Desktop;C\:\\msys32\\usr\\bin;C\:\\msys32\\mingw32\\bin;C\:\\msys32\\opt\\xtensa-esp32-elf\\bin
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.480657781/V/delimiter=;
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.480657781/V/operation=append
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.480657781/V/value=1
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.480657781/append=true
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.480657781/appendContributed=true
