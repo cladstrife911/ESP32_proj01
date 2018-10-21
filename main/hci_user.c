@@ -1,3 +1,8 @@
+/*inspired from:
+* https://github.com/espressif/esp-idf
+*       /examples/bluetooth/ble_adv/
+*/
+
 #include "hci_user.h"
 #include <stdio.h>
 #include <string.h>

@@ -17,6 +17,7 @@
 #include "nvs_flash.h"
 
 #include "hci_user.h"
+#include "gatt_server.h"
 
 /********** LOCAL FUNCTION DEFINITION **************/
 void ble_init();
@@ -96,23 +97,31 @@ void ble_init()
 		 else
 		 {
 			 ESP_LOGI(LOC_sTag, "esp_bt_controller_init OK");
+
 			 if ((ret = esp_bt_controller_enable(ESP_BT_MODE_BLE)) != ESP_OK) {
 			        ESP_LOGI(LOC_sTag, "Bluetooth controller enable failed: %s", esp_err_to_name(ret));
-			}
+			 }
 			 else
 			 {
+				 /*Start the GATT server using Bluedroid stack*/
+				 gatt_server_Init();
+
+				 /*
 				 ESP_LOGI(LOC_sTag, "esp_bt_controller_enable OK");
 				 ESP_LOGI(LOC_sTag, "Bluetooth controller ready, Start bleAdbTask");
 				 if(xTaskCreate(&bleAdvtTask, "bleAdvtTask", 2048, NULL, 5, NULL) != pdPASS)
 				 {
 					 ESP_LOGI(LOC_sTag, "Fail to create bleAdbTask");
 				 }
+				 */
 			 }
+
 		 }
 	}
 
 }
 
+#if 0
 void bleAdvtTask(void *pvParameters)
 {
     int cmd_cnt = 0;
@@ -129,6 +138,7 @@ void bleAdvtTask(void *pvParameters)
 				case 1: hci_cmd_send_ble_set_adv_param(); ++cmd_cnt; break;
 				case 2: hci_cmd_send_ble_set_adv_data(); ++cmd_cnt; break;
 				case 3: hci_cmd_send_ble_adv_start(); ++cmd_cnt; break;
+				case 4: gatt_server_Init(); ++cmd_cnt; break;
 				default:
             	break;
             }
@@ -162,6 +172,6 @@ static int host_rcv_pkt(uint8_t *data, uint16_t len)
     printf("\n");
     return 0;
 }
-
+#endif
 
 
