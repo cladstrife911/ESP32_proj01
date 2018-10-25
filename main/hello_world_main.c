@@ -19,6 +19,8 @@
 #include "hci_user.h"
 #include "gatt_server.h"
 
+#include "gpioTest.h"
+
 /********** LOCAL FUNCTION DEFINITION **************/
 void ble_init();
 void bleAdvtTask(void *pvParameters);
@@ -60,9 +62,13 @@ void app_main()
     /*Start BLE*/
     ble_init();
 
+    /*Init GPIO*/
+    GPIO_vidInit();
+
     while(1)
     {
 		vTaskDelay(1000 / portTICK_PERIOD_MS);
+		GPIO_vidToggleLed();
     }
 
 
