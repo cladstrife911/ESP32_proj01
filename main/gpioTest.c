@@ -17,7 +17,7 @@ static const char *LOC_sTag = "GPIO";
 /************ GLOBAL FUNCTIONS ***************/
 void GPIO_vidInit()
 {
-	  gpio_config_t io_conf;
+	gpio_config_t io_conf;
 	//disable interrupt
 	io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
 	//set as output mode
@@ -38,7 +38,7 @@ void GPIO_vidToggleLed()
 {
 	cnt++;
 	cnt%=2;
-	gpio_set_level(GPIO_OUTPUT_IO_0, cnt);
+	gpio_set_level(GPIO_OUTPUT_IO_1, cnt);
     ESP_LOGI(LOC_sTag, "Toggle %d!", cnt);
 }
 

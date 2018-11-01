@@ -1,5 +1,5 @@
-#ifndef GATT_SERVER_H
-#define GATT_SERVER_H
+#ifndef GATT_SERVER_LOC_H
+#define GATT_SERVER_LOC_H
 
 #include "stdint.h"
 
@@ -27,6 +27,7 @@ typedef struct {
 } prepare_type_env_t;
 
 /************ LOCAL CONSTANTS ***************/
+#define CONFIG_SET_RAW_ADV_DATA
 
 #define GATTS_SERVICE_UUID_TEST_A   0x00FF
 #define GATTS_CHAR_UUID_TEST_A      0xFF01
@@ -38,16 +39,15 @@ typedef struct {
 #define GATTS_DESCR_UUID_TEST_B     0x2222
 #define GATTS_NUM_HANDLE_TEST_B     4
 
-#define TEST_DEVICE_NAME            "ESP_GATTS_DEMO"
+#define TEST_DEVICE_NAME            "REMOTE"
 #define TEST_MANUFACTURER_DATA_LEN  17
 
 #define GATTS_DEMO_CHAR_VAL_LEN_MAX 0x40
 
 #define PREPARE_BUF_MAX_SIZE 1024
 
-#define PROFILE_NUM 2
+#define PROFILE_NUM 1
 #define PROFILE_A_APP_ID 0
-#define PROFILE_B_APP_ID 1
 
 /************ LOCAL VARIABLES ***************/
 uint8_t char1_str[] = {0x11,0x22,0x33};
@@ -66,13 +66,27 @@ static uint8_t adv_config_done = 0;
 #define adv_config_flag      (1 << 0)
 #define scan_rsp_config_flag (1 << 1)
 
-static uint8_t adv_service_uuid128[32] = {
-    /* LSB <--------------------------------------------------------------------------------> MSB */
-    //first uuid, 16bit, [12],[13] is the value
-    0xfb, 0x34, 0x9b, 0x5f, 0x80, 0x00, 0x00, 0x80, 0x00, 0x10, 0x00, 0x00, 0xEE, 0x00, 0x00, 0x00,
-    //second uuid, 32bit, [12], [13], [14], [15] is the value
-    0xfb, 0x34, 0x9b, 0x5f, 0x80, 0x00, 0x00, 0x80, 0x00, 0x10, 0x00, 0x00, 0xFF, 0x00, 0x00, 0x00,
+#ifdef CONFIG_SET_RAW_ADV_DATA
+static uint8_t raw_adv_data[] = {
+        /* flags */
+        0x02, 0x01, 0x06,
+        /* tx power*/
+        //0x02, 0x0a, 0xeb,
+        /* service uuid */
+        0x03, 0x03, 0xAD, 0xDE,
+        /* device name */
+        0x07, 0x09, 'R', 'E', 'M', 'O', 'T', 'E'
 };
+static uint8_t raw_scan_rsp_data[] = {
+        /* flags */
+        0x02, 0x01, 0x06,
+        /* tx power */
+        //0x02, 0x0a, 0xeb,
+        /* service uuid */
+        0x03, 0x03, 0xEF,0xBE
+};
+
+#else
 
 // The length of adv data must be less than 31 bytes
 //static uint8_t test_manufacturer[TEST_MANUFACTURER_DATA_LEN] =  {0x12, 0x23, 0x45, 0x56};
@@ -92,6 +106,7 @@ static esp_ble_adv_data_t adv_data = {
     .p_service_uuid = adv_service_uuid128,
     .flag = (ESP_BLE_ADV_FLAG_GEN_DISC | ESP_BLE_ADV_FLAG_BREDR_NOT_SPT),
 };
+
 // scan response data
 static esp_ble_adv_data_t scan_rsp_data = {
     .set_scan_rsp = true,
@@ -108,6 +123,7 @@ static esp_ble_adv_data_t scan_rsp_data = {
     .p_service_uuid = adv_service_uuid128,
     .flag = (ESP_BLE_ADV_FLAG_GEN_DISC | ESP_BLE_ADV_FLAG_BREDR_NOT_SPT),
 };
+#endif /*CONFIG_SET_RAW_ADV_DATA*/
 
 static esp_ble_adv_params_t adv_params = {
     .adv_int_min        = 0x20,
@@ -123,7 +139,6 @@ static esp_ble_adv_params_t adv_params = {
 
 
 static prepare_type_env_t a_prepare_write_env;
-static prepare_type_env_t b_prepare_write_env;
 
 /************ LOCAL FUNCTIONS ***************/
 void gap_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *param);
@@ -131,6 +146,5 @@ void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 void example_write_event_env(esp_gatt_if_t gatts_if, prepare_type_env_t *prepare_write_env, esp_ble_gatts_cb_param_t *param);
 void example_exec_write_event_env(prepare_type_env_t *prepare_write_env, esp_ble_gatts_cb_param_t *param);
 static void gatts_profile_a_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param);
-static void gatts_profile_b_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param);
 
-#endif /*GATT_SERVER_H*/
+#endif /*GATT_SERVER_LOC_H*/
